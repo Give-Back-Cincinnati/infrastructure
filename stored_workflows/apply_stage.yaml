@@ -12,14 +12,14 @@ jobs:
     build:
         name: kubectl apply
         runs-on: ubuntu-latest
-#         steps:
-#             - name: Checkout
-#               uses: actions/checkout@v2
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
 
-#             - uses: azure/setup-kubectl@v1
-#               with:
-#                 version: 'v1.19.11'
-#               id: install
+            - uses: azure/setup-kubectl@v1
+              with:
+                version: 'v1.19.11'
+              id: install
 
 #             - name: 'Login via Azure CLI'
 #               uses: azure/login@v1
