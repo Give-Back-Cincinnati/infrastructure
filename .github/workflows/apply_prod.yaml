@@ -1,0 +1,38 @@
+# name: Kubectl Apply Prod
+
+# on:
+#     push:
+#         branches:
+#             - main
+#     pull_request:
+#         branches:
+#             - main
+
+# jobs:
+#     build:
+#         name: kubectl apply
+#         runs-on: ubuntu-latest
+#         steps:
+#             - name: Checkout
+#               uses: actions/checkout@v1
+
+#             - uses: azure/setup-kubectl@v1
+#               with:
+#                 version: 'v1.19.11'
+#               id: install
+
+#             - name: 'Login via Azure CLI'
+#               uses: azure/login@v1
+#               with:
+#                 creds: ${{ secrets.AZURE_CREDENTIALS }}
+  
+#             # Set the target Azure Kubernetes Service (AKS) cluster. 
+#             - name: 'Set Cluster'
+#               uses: azure/aks-set-context@v1
+#               with:
+#                 creds: '${{ secrets.AZURE_CREDENTIALS }}'
+#                 cluster-name: ${{ secrets.CLUSTER_NAME }}
+#                 resource-group: ${{ secrets.CLUSTER_RESOURCE_GROUP }}
+
+#             - name: 'Apply to prod'
+#               run: kubectl apply -R -f ./k8s-resources/prod/

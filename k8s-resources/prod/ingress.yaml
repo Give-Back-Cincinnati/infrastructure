@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-service
+  namespace: prod
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/issuer: "letsencrypt-prod"
+
+spec:
+  tls:
+  - hosts:
+    - api.studyhall.org
+    - wbs.studyhall.org
+    - studyhall.org
+    secretName: studyhall-tls
+  rules:
+  - host: api.studyhall.org
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: studyhall-api-platform
+            port:
+              number: 80
+  - host: wbs.studyhall.org
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: wbs
+            port:
+              number: 80
