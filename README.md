@@ -7,9 +7,6 @@
 
 ## [NGINX ingress documentation](https://github.com/bitnami/charts/tree/master/bitnami/nginx-ingress-controller)
 
-## Setup nats.io for PIXIE
-`kubectl apply -f https://raw.githubusercontent.com/pixie-labs/pixie/main/k8s/vizier_deps/base/nats/nats_crd.yaml`
-
 ## Get Credentials
 REGISTRY_LOGIN_SERVER: get from Azure portal or terraform
 REGISTRY_USERNAME & REGISTRY_PASSWORD:

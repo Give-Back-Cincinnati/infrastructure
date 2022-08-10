@@ -10,16 +10,16 @@ metadata:
 spec:
   tls:
   - hosts:
-    - vault.studyhall.org
-    secretName: studyhall-tls
+    - vault.givebackcincinnati.org
+    secretName: givebackcincinnati-tls
   rules:
-  - host: vault.studyhall.org
+  - host: vault.givebackcincinnati.org
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: studyhall-vault
+            name: givebackcincinnati-vault
             port:
               number: 8200
