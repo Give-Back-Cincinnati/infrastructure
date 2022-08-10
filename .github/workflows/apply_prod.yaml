@@ -1,17 +1,17 @@
-# name: Kubectl Apply Prod
+name: Kubectl Apply Prod
 
-# on:
-#     push:
-#         branches:
-#             - main
-#     pull_request:
-#         branches:
-#             - main
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
 
-# jobs:
-#     build:
-#         name: kubectl apply
-#         runs-on: ubuntu-latest
+jobs:
+    build:
+        name: kubectl apply
+        runs-on: ubuntu-latest
 #         steps:
 #             - name: Checkout
 #               uses: actions/checkout@v1

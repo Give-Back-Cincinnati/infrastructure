@@ -13,7 +13,7 @@ provider "cloudflare" {
 }
 
 locals {
-  url     = "givebackcincinnati.org"
+  url = "givebackcincinnati.org"
 }
 
 data "cloudflare_zones" "gbc" {

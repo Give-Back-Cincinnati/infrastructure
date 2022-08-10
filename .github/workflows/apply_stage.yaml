@@ -1,17 +1,17 @@
-# name: Kubectl Apply Stage
+name: Kubectl Apply Stage
 
-# on:
-#     push:
-#         branches:
-#             - stage
-#     pull_request:
-#         branches:
-#             - stage
+on:
+    push:
+        branches:
+            - stage
+    pull_request:
+        branches:
+            - stage
 
-# jobs:
-#     build:
-#         name: kubectl apply
-#         runs-on: ubuntu-latest
+jobs:
+    build:
+        name: kubectl apply
+        runs-on: ubuntu-latest
 #         steps:
 #             - name: Checkout
 #               uses: actions/checkout@v2
