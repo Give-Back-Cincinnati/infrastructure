@@ -9,4 +9,13 @@ terraform {
       version = "=2.64.0"
     }
   }
+
+  cloud {
+    organization = "give-back-cincinnati"
+
+    workspaces {
+      name = "gbc-infra"
+    }
+  }
+
 }
