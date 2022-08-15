@@ -20,6 +20,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: givebackcincinnati-vault
+            name: gbc-vault
             port:
               number: 8200
