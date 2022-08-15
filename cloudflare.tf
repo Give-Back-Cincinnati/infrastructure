@@ -44,19 +44,10 @@ resource "cloudflare_record" "vault" {
   ttl     = 1
 }
 
-resource "cloudflare_record" "gbc_app" {
-  zone_id = local.zone_id
-  name    = "app.${local.url}"
-  value   = "gbc.pages.dev"
-  type    = "CNAME"
-  proxied = true
-  ttl     = 1
-}
-
 resource "cloudflare_record" "gbc_next" {
   zone_id = local.zone_id
   name    = "next.${local.url}"
-  value   = "gbc.pages.dev"
+  value   = "website-aid.pages.dev"
   type    = "CNAME"
   proxied = true
   ttl     = 1
