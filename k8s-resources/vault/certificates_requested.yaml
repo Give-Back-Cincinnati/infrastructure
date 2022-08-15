@@ -1,12 +1,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: studyhall
+  name: givebackcincinnati
   namespace: vault
 spec:
-  secretName: studyhall-tls
+  secretName: givebackcincinnati-tls
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
   dnsNames:
-  - 'vault.studyhall.org'
+  - 'vault.givebackcincinnati.org'

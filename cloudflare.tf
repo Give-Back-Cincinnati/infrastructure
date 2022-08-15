@@ -53,6 +53,15 @@ resource "cloudflare_record" "gbc_app" {
   ttl     = 1
 }
 
+resource "cloudflare_record" "gbc_next" {
+  zone_id = local.zone_id
+  name    = "next.${local.url}"
+  value   = "gbc.pages.dev"
+  type    = "CNAME"
+  proxied = true
+  ttl     = 1
+}
+
 resource "cloudflare_zone_settings_override" "gbc_dev_settings" {
   zone_id = local.zone_id
   settings {

@@ -10,28 +10,27 @@ metadata:
 spec:
   tls:
   - hosts:
-    - api.studyhall.org
-    - wbs.studyhall.org
-    - studyhall.org
-    secretName: studyhall-tls
+    - givebackcincinnati.org
+    - next.givebackcincinnati.org
+    secretName: givebackcincinnati-tls
   rules:
-  - host: api.studyhall.org
+  - host: givebackcincinnati.org
     http:
       paths:
-      - path: /
+      - path: /api
         pathType: Prefix
         backend:
           service:
-            name: studyhall-api-platform
+            name: api
             port:
               number: 80
-  - host: wbs.studyhall.org
+  - host: givebackcincinnati.org
     http:
       paths:
-      - path: /
+      - path: /docs
         pathType: Prefix
         backend:
           service:
-            name: wbs
+            name: api
             port:
               number: 80
