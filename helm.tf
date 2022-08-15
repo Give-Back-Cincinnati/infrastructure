@@ -126,18 +126,18 @@ resource "helm_release" "mongodb" {
   }
 
   set {
-    name  = "auth.usernames"
-    value = ["prod"]
+    name  = "auth.usernames.0"
+    value = "prod"
   }
 
   set {
-    name  = "auth.passwords"
-    value = ["hello_world"]
+    name  = "auth.passwords.0"
+    value = "hello_world"
   }
 
   set {
-    name  = "auth.databases"
-    value = ["index"]
+    name  = "auth.databases.0"
+    value = "index"
   }
 
   set {
