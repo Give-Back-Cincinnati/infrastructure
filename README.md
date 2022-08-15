@@ -20,6 +20,9 @@ AZURE_CREDENTIALS:
 2) copy the output to a secret named AZURE_CREDENTIALS
   NOTE: https://github.com/Azure/login#configure-deployment-credentials
 
+[PULL SECRET](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-kubernetes#create-an-image-pull-secret)
+1) Create a kubectl secret, see above link
+
 # Setup Vault
 1) Log in to vault: `kubectl exec -it -n vault gbc-vault-0 -- /bin/sh`
 2) Run `vault operator init`
@@ -29,6 +32,8 @@ AZURE_CREDENTIALS:
 6) Create a username and password `vault write auth/userpass/users/[username] password='[insert strong password]' policies=admins`
 7) Login as root (method: Token, enter root token) and create a new policy named "admins"
 8) You can now create secrets engines
+
+
 
 ### TODO: 
 Setup a cleanup script for ACR -- e.g. https://zimmergren.net/purging-container-images-from-azure-container-registry/

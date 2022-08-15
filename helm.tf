@@ -140,24 +140,17 @@ resource "helm_release" "mongodb" {
     value = "index"
   }
 
-  #   set {
-  #     name  = "resources.limits.cpu"
-  #     value = "600m"
-  #   }
+}
 
-  #   set {
-  #     name  = "resources.limits.memory"
-  #     value = "512Mi"
-  #   }
+resource "helm_release" "redis" {
+  name = "redis"
 
-  #   set {
-  #     name  = "resources.requests.cpu"
-  #     value = "600m"
-  #   }
+  repository = "https://charts.bitnami.com/bitnami"
+  chart      = "redis"
 
-  #   set {
-  #     name  = "resources.requests.memory"
-  #     value = "512Mi"
-  #   }
+  set {
+    name  = "architecture"
+    value = "standalone"
+  }
 
 }
