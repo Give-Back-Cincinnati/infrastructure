@@ -113,47 +113,51 @@ resource "helm_release" "vault" {
 }
 
 resource "helm_release" "mongodb" {
-    name = var.name_prefix
+  name = var.name_prefix
 
-    repository = "https://charts.bitnami.com/bitnami"
-    chart = "mongodb"
+  repository = "https://charts.bitnami.com/bitnami"
+  chart      = "mongodb"
 
-    namespace = kubernetes_namespace.prod.metadata.0.name
+  namespace = kubernetes_namespace.prod.metadata.0.name
 
-    set {
-        name = "architecture"
-        value = "replicaset"
-    }
+  set {
+    name  = "architecture"
+    value = "replicaset"
+  }
 
-    set {
-        name = "auth.usernames"
-        value = ["prod"]
-    }
+  set {
+    name  = "auth.usernames"
+    value = ["prod"]
+  }
 
-    set {
-        name = "auth.passwords"
-        value = ["hello_world"]
-    }
+  set {
+    name  = "auth.passwords"
+    value = ["hello_world"]
+  }
 
-    set {
-        name = "auth.databases"
-        value = ["index"]
-    }
+  set {
+    name  = "auth.databases"
+    value = ["index"]
+  }
 
-    set {
-        name = "resources.limits"
-        value = {
-            cpu = "100m"
-            memory = "128Mi"
-        }
-    }
+  set {
+    name  = "resources.limits.cpu"
+    value = "100m"
+  }
 
-    set {
-        name = "resources.requests"
-        value = {
-            cpu = "100m"
-            memory = "128Mi"
-        }
-    }
+  set {
+    name  = "resources.limits.memory"
+    value = "128Mi"
+  }
+
+  set {
+    name  = "resources.requests.cpu"
+    value = "100m"
+  }
+
+  set {
+    name  = "resources.requests.memory"
+    value = "128Mi"
+  }
 
 }
