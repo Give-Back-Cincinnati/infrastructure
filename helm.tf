@@ -122,7 +122,7 @@ resource "helm_release" "mongodb" {
 
   set {
     name  = "architecture"
-    value = "replicaset"
+    value = "standalone"
   }
 
   set {
