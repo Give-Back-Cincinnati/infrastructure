@@ -33,6 +33,34 @@ AZURE_CREDENTIALS:
 7) Login as root (method: Token, enter root token) and create a new policy named "admins"
 8) You can now create secrets engines
 
+# Setup Secret Injection via Vault
+1) `vault auth enable kubernetes`
+2) Add a policy for apps to read secrets e.g.
+    ```
+    path "prod/*" {
+    capabilities = ["read"]
+    }
+
+    path "stage/*" {
+    capabilities = ["read"]
+    }
+    ```
+1)  Create config for k8s authentication
+    ```
+    vault write auth/kubernetes/config \
+    token_reviewer_jwt="$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" \
+    kubernetes_host=https://${KUBERNETES_PORT_443_TCP_ADDR}:443 \
+    kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+```
+1) Create "myapp" role and give it a name
+```
+vault write auth/kubernetes/role/myapp \
+bound_service_account_names=app \
+bound_service_account_namespaces=demo \
+policies=app \
+ttl=1h
+```
+2) 
 
 
 ### TODO: 
