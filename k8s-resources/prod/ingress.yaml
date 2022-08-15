@@ -24,3 +24,13 @@ spec:
             name: api
             port:
               number: 80
+  - host: givebackcincinnati.org
+    http:
+      paths:
+      - path: /docs
+        pathType: Prefix
+        backend:
+          service:
+            name: api
+            port:
+              number: 80
