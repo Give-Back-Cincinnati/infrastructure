@@ -148,6 +148,8 @@ resource "helm_release" "redis" {
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "redis"
 
+  namespace = kubernetes_namespace.prod.metadata.0.name
+
   set {
     name  = "architecture"
     value = "standalone"
