@@ -126,6 +126,11 @@ resource "helm_release" "mongodb" {
   }
 
   set {
+    name  = "auth.enabled"
+    value = true
+  }
+
+  set {
     name  = "auth.usernames.0"
     value = "prod"
   }
