@@ -20,16 +20,15 @@ AZURE_CREDENTIALS:
 2) copy the output to a secret named AZURE_CREDENTIALS
   NOTE: https://github.com/Azure/login#configure-deployment-credentials
 
-# Helm commands
-Upgrade:
-```bash
-helm upgrade studyhall --reuse-values helm/api-platform/ --namespace=${{ secrets.NAMESPACE_PROD }} \
---set php.image.tag="${{ github.sha }}" \
---set php.corsAllowOrigin='^https?://[a-z\]*\.${{ env.APP_URL }}$' \
---set caddy.image.tag="${{ github.sha }}" \
---set postgresql.url="${{ secrets.POSTGRESQL_URL }}" \
---set imagePullSecrets[0].name=${{ secrets.PULL_SECRET }}
-```
+# Setup Vault
+1) Log in to vault: `kubectl exec -it -n vault gbc-vault-0 -- /bin/sh`
+2) Run `vault operator init`
+3) Save and distribute the unseal keys
+4) `vault login` and enter the root token
+5) Allow users to authenticate with username and password `vault auth enable userpass`
+6) Create a username and password `vault write auth/userpass/users/[username] password='[insert strong password]' policies=admins`
+7) Login as root (method: Token, enter root token) and create a new policy named "admins"
+8) You can now create secrets engines
 
 ### TODO: 
 Setup a cleanup script for ACR -- e.g. https://zimmergren.net/purging-container-images-from-azure-container-registry/
