@@ -113,17 +113,17 @@ resource "helm_release" "vault" {
 }
 
 resource "helm_release" "mongodb" {
-  name = var.name_prefix
+  name = "mongodb"
 
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "mongodb"
 
   namespace = kubernetes_namespace.prod.metadata.0.name
 
-  set {
-    name  = "architecture"
-    value = "replicaset"
-  }
+  #   set {
+  #     name  = "architecture"
+  #     value = "replicaset"
+  #   }
 
   set {
     name  = "auth.usernames.0"
