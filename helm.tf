@@ -120,10 +120,10 @@ resource "helm_release" "mongodb" {
 
   namespace = kubernetes_namespace.prod.metadata.0.name
 
-  #   set {
-  #     name  = "architecture"
-  #     value = "replicaset"
-  #   }
+  set {
+    name  = "architecture"
+    value = "replicaset"
+  }
 
   set {
     name  = "auth.usernames.0"
@@ -140,24 +140,24 @@ resource "helm_release" "mongodb" {
     value = "index"
   }
 
-  set {
-    name  = "resources.limits.cpu"
-    value = "600m"
-  }
+  #   set {
+  #     name  = "resources.limits.cpu"
+  #     value = "600m"
+  #   }
 
-  set {
-    name  = "resources.limits.memory"
-    value = "512Mi"
-  }
+  #   set {
+  #     name  = "resources.limits.memory"
+  #     value = "512Mi"
+  #   }
 
-  set {
-    name  = "resources.requests.cpu"
-    value = "600m"
-  }
+  #   set {
+  #     name  = "resources.requests.cpu"
+  #     value = "600m"
+  #   }
 
-  set {
-    name  = "resources.requests.memory"
-    value = "512Mi"
-  }
+  #   set {
+  #     name  = "resources.requests.memory"
+  #     value = "512Mi"
+  #   }
 
 }
