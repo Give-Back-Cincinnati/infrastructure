@@ -160,4 +160,19 @@ resource "helm_release" "redis" {
     value = "standalone"
   }
 
+  set {
+    name  = "auth.enabled"
+    value = true
+  }
+
+  set {
+    name  = "auth.password"
+    value = "hello_world_2"
+  }
+
+  set {
+    name  = "master.persistence.enabled"
+    value = false
+  }
+
 }
