@@ -162,7 +162,7 @@ resource "helm_release" "redis" {
 
   set {
     name  = "auth.enabled"
-    value = true
+    value = false
   }
 
   set {

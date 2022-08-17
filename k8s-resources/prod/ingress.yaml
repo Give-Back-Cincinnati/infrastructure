@@ -12,8 +12,19 @@ spec:
   - hosts:
     - givebackcincinnati.org
     - next.givebackcincinnati.org
+    - api.givebackcincinnati.org
     secretName: givebackcincinnati-tls
   rules:
+  - host: api.givebackcincinnati.org
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: server
+            port:
+              number: 80
   - host: givebackcincinnati.org
     http:
       paths:
@@ -21,7 +32,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: api
+            name: server
             port:
               number: 80
   - host: givebackcincinnati.org
@@ -31,6 +42,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: api
+            name: server
             port:
               number: 80
