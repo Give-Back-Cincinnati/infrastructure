@@ -3,7 +3,8 @@ variable "cloudflare_email" {
 }
 
 variable "cloudflare_api_key" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "r2_access_key" {
@@ -11,7 +12,8 @@ variable "r2_access_key" {
 }
 
 variable "r2_secret_key" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 provider "cloudflare" {
@@ -22,12 +24,16 @@ provider "cloudflare" {
 provider "aws" {
   access_key                  = var.r2_access_key
   secret_key                  = var.r2_secret_key
+  region                      = "auto"
   skip_credentials_validation = true
   skip_region_validation      = true
+  skip_metadata_api_check     = true
   skip_requesting_account_id  = true
+  skip_get_ec2_platforms      = true
   endpoints {
     s3 = "https://352594426cd9ff5b7c6785315b51a93d.r2.cloudflarestorage.com"
   }
+  alias = "cloudflare_r2"
 }
 
 locals {
