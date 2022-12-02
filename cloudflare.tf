@@ -7,11 +7,11 @@ variable "cloudflare_api_key" {
 }
 
 variable "r2_access_key" {
-    type = string
+  type = string
 }
 
 variable "r2_secret_key" {
-    type = string
+  type = string
 }
 
 provider "cloudflare" {
@@ -20,11 +20,11 @@ provider "cloudflare" {
 }
 
 provider "aws" {
-  access_key = var.r2_access_key
-  secret_key = var.r2_secret_key
+  access_key                  = var.r2_access_key
+  secret_key                  = var.r2_secret_key
   skip_credentials_validation = true
-  skip_region_validation = true
-  skip_requesting_account_id = true
+  skip_region_validation      = true
+  skip_requesting_account_id  = true
   endpoints {
     s3 = "https://352594426cd9ff5b7c6785315b51a93d.r2.cloudflarestorage.com"
   }
