@@ -27,21 +27,3 @@ provider "aws" {
 resource "aws_s3_bucket" "cloudflare-bucket" {
   bucket = "gbc-static"
 }
-
-resource "aws_s3_bucket_cors_configuration" "example" {
-  bucket = aws_s3_bucket.cloudflare-bucket.id
-
-  #   cors_rule {
-  #     allowed_headers = ["*"]
-  #     allowed_methods = ["PUT", "POST"]
-  #     allowed_origins = ["https://${cloudflare_record.gbc_next.name}", "http://localhost"]
-  #     # expose_headers  = ["ETag"]
-  #     max_age_seconds = 3000
-  #   }
-
-  cors_rule {
-    allowed_headers = ["*"]
-    allowed_methods = ["PUT"]
-    allowed_origins = ["https://${cloudflare_record.gbc_next.name}"]
-  }
-}
