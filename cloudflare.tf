@@ -2,10 +2,16 @@ variable "cloudflare_email" {
   type = string
 }
 
+variable "cloudflare_account_id" {
+  type      = string
+  sensitive = true
+}
+
 variable "cloudflare_api_key" {
   type      = string
   sensitive = true
 }
+
 
 variable "r2_access_key" {
   type = string
@@ -27,10 +33,9 @@ provider "aws" {
   region                      = "auto"
   skip_credentials_validation = true
   skip_region_validation      = true
-  skip_metadata_api_check     = true
   skip_requesting_account_id  = true
   endpoints {
-    s3 = "https://352594426cd9ff5b7c6785315b51a93d.r2.cloudflarestorage.com"
+    s3 = "https://${var.cloudflare_account_id}.r2.cloudflarestorage.com"
   }
 }
 
