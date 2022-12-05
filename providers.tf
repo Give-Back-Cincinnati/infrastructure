@@ -8,6 +8,10 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "=2.64.0"
     }
+    aws = {
+      source  = "hashicorp/aws"
+      version = "4.20.1"
+    }
   }
 
   cloud {
