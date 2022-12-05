@@ -80,15 +80,6 @@ resource "cloudflare_record" "gbc_next" {
   ttl     = 1
 }
 
-resource "cloudflare_record" "gbc_static" {
-  zone_id = local.zone_id
-  name    = "static.${local.url}"
-  value   = "public.r2.dev"
-  type    = "CNAME"
-  proxied = true
-  ttl     = 1
-}
-
 resource "aws_s3_bucket" "cloudflare-bucket" {
   bucket = "gbc-static"
 }
