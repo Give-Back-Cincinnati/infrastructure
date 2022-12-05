@@ -80,3 +80,4 @@ resource "cloudflare_page_rule" "www_redirect" {
     }
   }
 }
+
