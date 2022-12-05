@@ -40,7 +40,13 @@ resource "aws_s3_bucket_cors_configuration" "example" {
   #   }
 
   cors_rule {
+    allowed_headers = ["*"]
     allowed_methods = ["GET"]
+    allowed_origins = [""]
+  }
+  cors_rule {
+    allowed_headers = ["*"]
+    allowed_methods = ["PUT"]
     allowed_origins = ["https://${cloudflare_record.gbc_next.name}"]
   }
 }
