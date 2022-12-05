@@ -29,11 +29,9 @@ provider "aws" {
   skip_region_validation      = true
   skip_metadata_api_check     = true
   skip_requesting_account_id  = true
-  skip_get_ec2_platforms      = true
   endpoints {
     s3 = "https://352594426cd9ff5b7c6785315b51a93d.r2.cloudflarestorage.com"
   }
-  alias = "cloudflare_r2"
 }
 
 locals {
