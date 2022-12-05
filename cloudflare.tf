@@ -2,22 +2,7 @@ variable "cloudflare_email" {
   type = string
 }
 
-variable "cloudflare_account_id" {
-  type      = string
-  sensitive = true
-}
-
 variable "cloudflare_api_key" {
-  type      = string
-  sensitive = true
-}
-
-
-variable "r2_access_key" {
-  type = string
-}
-
-variable "r2_secret_key" {
   type      = string
   sensitive = true
 }
@@ -25,18 +10,6 @@ variable "r2_secret_key" {
 provider "cloudflare" {
   email   = var.cloudflare_email
   api_key = var.cloudflare_api_key
-}
-
-provider "aws" {
-  access_key                  = var.r2_access_key
-  secret_key                  = var.r2_secret_key
-  region                      = "auto"
-  skip_credentials_validation = true
-  skip_region_validation      = true
-  skip_requesting_account_id  = true
-  endpoints {
-    s3 = "https://${var.cloudflare_account_id}.r2.cloudflarestorage.com"
-  }
 }
 
 locals {
@@ -80,19 +53,6 @@ resource "cloudflare_record" "gbc_next" {
   ttl     = 1
 }
 
-resource "cloudflare_record" "gbc_static" {
-  zone_id = local.zone_id
-  name    = "static.${local.url}"
-  value   = "public.r2.dev"
-  type    = "CNAME"
-  proxied = true
-  ttl     = 1
-}
-
-resource "aws_s3_bucket" "cloudflare-bucket" {
-  bucket = "gbc-static"
-}
-
 resource "cloudflare_zone_settings_override" "gbc_dev_settings" {
   zone_id = local.zone_id
   settings {
@@ -120,3 +80,4 @@ resource "cloudflare_page_rule" "www_redirect" {
     }
   }
 }
+
