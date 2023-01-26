@@ -47,6 +47,15 @@ resource "cloudflare_record" "vault" {
 resource "cloudflare_record" "gbc_next" {
   zone_id = local.zone_id
   name    = "next.${local.url}"
+  value   = "stage.website-aid.pages.dev"
+  type    = "CNAME"
+  proxied = true
+  ttl     = 1
+}
+
+resource "cloudflare_record" "gbc" {
+  zone_id = local.zone_id
+  name    = local.url
   value   = "website-aid.pages.dev"
   type    = "CNAME"
   proxied = true
@@ -81,3 +90,20 @@ resource "cloudflare_page_rule" "www_redirect" {
   }
 }
 
+resource "cloudflare_record" "mailchimp_validate_one" {
+  zone_id = local.zone_id
+  name    = "k2._domainkey.${local.url}"
+  value   = "dkim2.mcsv.net"
+  type    = "CNAME"
+  proxied = false
+  ttl     = 1
+}
+
+resource "cloudflare_record" "mailchimp_validate_two" {
+  zone_id = local.zone_id
+  name    = "k3._domainkey.${local.url}"
+  value   = "dkim3.mcsv.net"
+  type    = "CNAME"
+  proxied = false
+  ttl     = 1
+}

@@ -59,10 +59,11 @@ resource "azurerm_subnet" "gbc_subnet" {
 }
 
 resource "azurerm_kubernetes_cluster" "gbc" {
-  name                = "${var.name_prefix}-aks"
-  location            = azurerm_resource_group.gbc.location
-  resource_group_name = azurerm_resource_group.gbc.name
-  dns_prefix          = "${var.name_prefix}-dns"
+  name                      = "${var.name_prefix}-aks"
+  location                  = azurerm_resource_group.gbc.location
+  resource_group_name       = azurerm_resource_group.gbc.name
+  dns_prefix                = "${var.name_prefix}-dns"
+  automatic_channel_upgrade = "stable"
 
   default_node_pool {
     name                = "default"
@@ -90,7 +91,7 @@ data "azurerm_resource_group" "aks_resource_group" {
 resource "azurerm_public_ip" "gbc" {
   name                = "${var.name_prefix}PublicIp"
   resource_group_name = data.azurerm_resource_group.aks_resource_group.name
-  location            = data.azurerm_resource_group.aks_resource_group.location
+  location            = azurerm_resource_group.gbc.location
   allocation_method   = "Static"
   sku                 = "Standard"
 }
