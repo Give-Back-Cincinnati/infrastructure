@@ -34,6 +34,12 @@ resource "azurerm_resource_group" "gbc" {
   location = "East US"
 }
 
+resource "azurerm_email_communication_service" "gbc-email-service" {
+  name                = "gbc-emailcommunicationservice"
+  resource_group_name = azurerm_resource_group.gbc.name
+  data_location       = "United States"
+}
+
 resource "azurerm_container_registry" "acr" {
   name                = "gbcCR"
   resource_group_name = azurerm_resource_group.gbc.name
@@ -75,7 +81,7 @@ resource "azurerm_kubernetes_cluster" "gbc" {
 
   network_profile {
     network_plugin    = "kubenet"
-    load_balancer_sku = "Standard"
+    load_balancer_sku = "standard"
   }
 
   identity {
