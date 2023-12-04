@@ -1,6 +1,9 @@
 ## Get kubeconfig for the cluster
 `az aks get-credentials --admin --name [name]-aks --resource-group [name]-resources`
 
+### Refresh Terraform Cloud Credentials
+1) https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app#add-a-client-secret
+
 ## [Allowing DNS validation for LetsEncrypt](https://cert-manager.io/docs/tutorials/acme/dns-validation/)
 1) Run `kubectl create secret generic cloudflare-api-key-secret --from-literal=api-key=<api_key_goes_here>  --namespace=cert-manager` to add the cloudflare API secret to the cluster for use by the issuer
 2) Run `kubectl apply -f ./k8s-resources/cert-manager`
@@ -51,16 +54,16 @@ AZURE_CREDENTIALS:
     token_reviewer_jwt="$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" \
     kubernetes_host=https://${KUBERNETES_PORT_443_TCP_ADDR}:443 \
     kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-```
+    ```
 1) Create "myapp" role and give it a name
-```
-vault write auth/kubernetes/role/myapp \
-bound_service_account_names=app \
-bound_service_account_namespaces=demo \
-policies=app \
-ttl=1h
-```
-2) 
+    ```
+    vault write auth/kubernetes/role/myapp \
+    bound_service_account_names=app \
+    bound_service_account_namespaces=demo \
+    policies=app \
+    ttl=1h
+    ```
+
 
 
 ### TODO: 
