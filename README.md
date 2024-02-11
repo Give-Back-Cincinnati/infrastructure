@@ -1,5 +1,10 @@
+
+<img width="959" alt="Screenshot 2024-02-11 at 2 04 39 PM" src="https://github.com/Give-Back-Cincinnati/infrastructure/assets/16326908/1face15d-cfab-4b40-b354-05dce04aad53">
+
+
 ## Get kubeconfig for the cluster
 `az aks get-credentials --admin --name [name]-aks --resource-group [name]-resources`
+
 
 ## [Allowing DNS validation for LetsEncrypt](https://cert-manager.io/docs/tutorials/acme/dns-validation/)
 1) Run `kubectl create secret generic cloudflare-api-key-secret --from-literal=api-key=<api_key_goes_here>  --namespace=cert-manager` to add the cloudflare API secret to the cluster for use by the issuer
